@@ -1,0 +1,38 @@
+.link {
+  stroke: #bb13c4;
+	stroke-width: 1.5px;
+}
+
+	.circle {
+    stroke: #000;
+    stroke-width: 1.5px;
+    fill: #999
+	}
+
+button {
+  margin: 0;
+  padding:0;
+}
+
+.text {
+  font: 12px sans-serif;
+  pointer-events: none;
+  text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, 0 -1px 0 #fff, -1px 0 0 #fff;
+}
+
+body {
+  margin: 0;
+
+}
+
+#graf {
+  width:100%;
+  height:95%;
+}
+
+
+/*
+  #graf {
+  width:960;
+  height:600;
+}*/

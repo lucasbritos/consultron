@@ -1,0 +1,3 @@
+## ENTRAR AL POSTGRES
+
+docker exec -it consultron_db_1 psql -U pguser
