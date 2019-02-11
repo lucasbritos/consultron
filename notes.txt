@@ -1,3 +1,12 @@
 ## ENTRAR AL POSTGRES
 
 docker exec -it consultron_db_1 psql -U pguser
+
+
+
+docker rm $(docker ps -a -q)
+docker rmi $(docker images | grep "^<none>" | awk '{print $3}')
+
+
+
+docker build . --tag consultron_server

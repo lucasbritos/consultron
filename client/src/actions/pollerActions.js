@@ -17,7 +17,7 @@ export function disconnect(){
 }
 
 export function sendStartCancel(body){
-  return function(dispatch) {
+  return function() {
     return restHelper.post("poller",body)
   };
 }

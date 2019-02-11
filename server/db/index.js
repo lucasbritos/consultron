@@ -1,7 +1,7 @@
 const { Pool } = require('pg')
 
 const pool = new Pool({
-    host: process.env.POSTGRES_HOST,
+    host: (process.env.NODE_ENV=="production")? process.env.POSTGRES_HOST_PROD : process.env.POSTGRES_HOST_DEV ,
     user: process.env.POSTGRES_USER,
     password: process.env.POSTGRES_PASSWORD,
     database: "application",

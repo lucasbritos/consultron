@@ -12,6 +12,12 @@ const GLOBALS = {
 };
 
 export default {
+  node: {
+    console: true,
+    fs: 'empty',
+    net: 'empty',
+    tls: 'empty'
+  },
   resolve: {
     extensions: ['*', '.js', '.jsx', '.json']
   },

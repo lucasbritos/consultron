@@ -13,6 +13,12 @@ const mountRoutes = require('./routes')
 const app = express()
 var expressWs = require('express-ws')(app);
 
+
+if (process.env.NODE_ENV == 'production'){
+    app.use('/',express.static(__dirname + '/dist'));
+}
+
+
 app.use(cors())
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());

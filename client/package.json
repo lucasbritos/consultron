@@ -1,5 +1,5 @@
 {
-  "name": "consultron",
+  "name": "consultron-client",
   "version": "0.1.0",
   "description": "",
   "engines": {
@@ -8,10 +8,9 @@
   },
   "scripts": {
     "preinstall": "node tools/nodeVersionCheck.js",
-    "remove-demo": "babel-node tools/removeDemo.js",
     "start-message": "babel-node tools/startMessage.js",
     "prestart": "npm run start-message",
-    "start": "concurrently -k -r -s first \"npm run open:src\" \"npm run lint:watch\"",
+    "start": "concurrently -k -r -s first \"npm run test:watch\" \"npm run open:src\" \"npm run lint:watch\"",
     "open:src": "babel-node tools/srcServer.js",
     "open:dist": "babel-node tools/distServer.js",
     "lint": "esw webpack.config.* src tools --color",
@@ -20,6 +19,7 @@
     "remove-dist": "rimraf ./dist",
     "prebuild": "npm run lint && npm run test && npm run clean-dist",
     "build": "babel-node tools/build.js && npm run open:dist",
+    "build-only": "babel-node tools/build.js",
     "test": "jest",
     "test:CI": "jest",
     "test:cover": "npm run test -- --coverage ",
@@ -119,9 +119,6 @@
     "setupFiles": [
       "raf/polyfill",
       "./tools/enzymeTestAdapterSetup.js"
-    ],
-    "modulePathIgnorePatterns": [
-      "node_modules"
     ]
   },
   "babel": {

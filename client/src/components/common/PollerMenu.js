@@ -44,9 +44,9 @@ class PollerMenu extends React.Component {
           open={Boolean(anchorEl)}
           onClose={this.handleClose}
         >
-          <NavLink exact to="/" ><MenuItem onClick={this.handleClose}>Projects</MenuItem></NavLink >
-          <NavLink to="/apps" ><MenuItem onClick={this.handleClose}>Hosts</MenuItem></NavLink>
-          <MenuItem onClick={this.handleClose}>Templates</MenuItem>
+          <NavLink to="/about" ><MenuItem onClick={this.handleClose}>Projects</MenuItem></NavLink >
+          <NavLink to="/about" ><MenuItem onClick={this.handleClose}>Hosts</MenuItem></NavLink>
+          <NavLink to="/about" ><MenuItem onClick={this.handleClose}>Templates</MenuItem></NavLink>
         </Menu>
       </div>
     );

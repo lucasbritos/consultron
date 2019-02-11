@@ -1,0 +1,37 @@
+version: '3.1'
+
+services:
+  db-prod:
+    image: postgres
+    restart: always
+    volumes:
+      - ${PWD}/postgres/initdb.d-prod:/docker-entrypoint-initdb.d
+      - postgres-storage-prod:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_USER: ${POSTGRES_USER}
+
+  snmpsim:
+    build: snmpsim/.
+    restart: unless-stopped
+    user: "snmpsim:nogroup"
+    volumes:
+      - ${PWD}/snmpsim/files:/usr/local/snmpsim/data
+
+  
+  server:
+    build: /.
+    restart: unless-stopped
+    ports:
+     - "${SERVER_APP_PORT}:${SERVER_APP_PORT}"
+    environment:
+      NODE_ENV: "production"
+
+
+networks:
+  default:
+
+volumes:
+  postgres-storage-prod:
+
+

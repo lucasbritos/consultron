@@ -16,11 +16,11 @@ export default function pollerReducer(state = initialState.poller, action) {
       newState.connected=true     
       return newState
 
-    case WEBSOCKET_MESSAGE:
+    case WEBSOCKET_MESSAGE: {
       newState = clone(state)
       let data = JSON.parse(action.payload.data)
       switch (data.type) {
-        case "busy":
+        case "busy": 
           newState.busy=data.msg
           // reseteo progreso
           if (data.msg==true) {
@@ -36,8 +36,8 @@ export default function pollerReducer(state = initialState.poller, action) {
           return newState;
         default:
           return state
-        }
-
+      }
+    }
     case WEBSOCKET_CLOSED:
       newState = clone(state)
       newState.connected=false     

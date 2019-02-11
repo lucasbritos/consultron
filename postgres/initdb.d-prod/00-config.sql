@@ -1,3 +1,5 @@
+/* CONFIG INCIAL */
+
 \set envuser `echo "$POSTGRES_USER"`
 \set envpass `echo "$POSTGRES_PASSWORD"`
 
@@ -42,7 +44,7 @@ CREATE TABLE host(
     project_id INTEGER NOT NULL,
     alias character varying(120) NOT NULL,
     community character varying(120) NOT NULL,
-    ip_address inet NOT NULL,
+    ip_address character varying(120) NOT NULL,
     port integer NOT NULL,
     location character varying(120),
     template_id INTEGER REFERENCES template (template_id) NOT NULL,
@@ -229,72 +231,7 @@ CREATE TABLE bgp_peer_table
     FOREIGN KEY (project_id,alias) REFERENCES host (project_id,alias) ON DELETE CASCADE
 );
 
-
-
-/* CONFIG INCIAL TESTING */
-
-
-INSERT INTO project (project_id,project_name) VALUES (1,'Project1');
-
-INSERT INTO template (template_id,template_name) VALUES (1,'CiscoNoRoute');
-INSERT INTO template (template_id,template_name) VALUES (2,'CiscoRoute');
-
-INSERT INTO oid (oid_id,oid_name,oid,type,cols,format) VALUES (1,'ifXTable','1.3.6.1.2.1.31.1.1','table','{1,18}','{}');
-INSERT INTO oid (oid_id,oid_name,oid,type,cols,format) VALUES (2,'ifTable','1.3.6.1.2.1.2.2','table','{1,2,4,5,7,8}','{}');
-INSERT INTO oid (oid_id,oid_name,oid,type,cols,format) VALUES (3,'ciscoCdpCacheTable','1.3.6.1.4.1.9.9.23.1.2.1','table','{1,3,4,5,6,7,8,9,10,11,12}','{"2":"formats.ipAddress"}');
-INSERT INTO oid (oid_id,oid_name,oid,type,cols,format) VALUES (4,'ospfNbrTable','1.3.6.1.2.1.14.10','table','{1,2,3,4,5,6,7,8,9,10,11}','{}');
-INSERT INTO oid (oid_id,oid_name,oid,type,format) VALUES (5,'sysDesc','1.3.6.1.2.1.1.1.0','single','{}');
-INSERT INTO oid (oid_id,oid_name,oid,type,format) VALUES (6,'sysName','1.3.6.1.2.1.1.5.0','single','{}');
-INSERT INTO oid (oid_id,oid_name,oid,type,cols,format) VALUES (7,'bgpPeerTable','1.3.6.1.2.1.15.3','table','{1,2,3}','{}');
-INSERT INTO oid (oid_id,oid_name,oid,type,cols,format) VALUES (8,'ipAddrTable','1.3.6.1.2.1.4.20','table','{1,2,3,4,5}','{}');
-INSERT INTO oid (oid_id,oid_name,oid,type,cols,format) VALUES (9,'ipRouteTable','1.3.6.1.2.1.4.21','table','{1,2,3,4,5,6,7,8,9,10,11,12}','{}');
-INSERT INTO oid (oid_id,oid_name,oid,type,format) VALUES (10,'ospfRouterId','1.3.6.1.2.1.14.1.1.0','single','{}');
-
-
-INSERT INTO tables_schema (table_id,table_name) VALUES (1,'at_table');
-INSERT INTO tables_schema (table_id,table_name) VALUES (2,'if_table');
-INSERT INTO tables_schema (table_id,table_name) VALUES (3,'if_x_table');
-INSERT INTO tables_schema (table_id,table_name) VALUES (4,'ip_addr_table');
-INSERT INTO tables_schema (table_id,table_name) VALUES (5,'ip_route_table');
-INSERT INTO tables_schema (table_id,table_name) VALUES (6,'ospf_if_table');
-INSERT INTO tables_schema (table_id,table_name) VALUES (8,'ospf_nbr_table');
-INSERT INTO tables_schema (table_id,table_name) VALUES (9,'ospf_router_id');
-INSERT INTO tables_schema (table_id,table_name) VALUES (10,'sys_descr');
-INSERT INTO tables_schema (table_id,table_name) VALUES (11,'sys_name');
-INSERT INTO tables_schema (table_id,table_name) VALUES (12,'cisco_cdp_cache_table');
-INSERT INTO tables_schema (table_id,table_name) VALUES (13,'bgp_peer_table');
-
-
-
-INSERT INTO host (alias,community,ip_address,port,location,template_id,project_id) VALUES ('R1','R1','172.21.0.2',1024,'testbench', 2,1);
-INSERT INTO host (alias,community,ip_address,port,location,template_id,project_id) VALUES ('R2','R2','172.21.0.2',1024,'testbench', 2,1);
-INSERT INTO host (alias,community,ip_address,port,location,template_id,project_id) VALUES ('R3','R3','172.21.0.2',1024,'testbench', 2,1);
-INSERT INTO host (alias,community,ip_address,port,location,template_id,project_id) VALUES ('R4','R4','172.21.0.2',1024,'testbench', 2,1);
-INSERT INTO host (alias,community,ip_address,port,location,template_id,project_id) VALUES ('R5','R5','172.21.0.2',1024,'testbench', 2,1);
-INSERT INTO host (alias,community,ip_address,port,location,template_id,project_id) VALUES ('tout','tout','172.21.0.2',1024,'testbench', 2,1);
-
-
-
-INSERT INTO template_oid (table_id,oid_id,template_id) VALUES (3,1,1);
-INSERT INTO template_oid (table_id,oid_id,template_id) VALUES (2,2,1);
-INSERT INTO template_oid (table_id,oid_id,template_id) VALUES (12,3,1);
-INSERT INTO template_oid (table_id,oid_id,template_id) VALUES (8,4,1);
-INSERT INTO template_oid (table_id,oid_id,template_id) VALUES (10,5,1);
-INSERT INTO template_oid (table_id,oid_id,template_id) VALUES (11,6,1);
-INSERT INTO template_oid (table_id,oid_id,template_id) VALUES (13,7,1);
-INSERT INTO template_oid (table_id,oid_id,template_id) VALUES (4,8,1);
-INSERT INTO template_oid (table_id,oid_id,template_id) VALUES (9,10,1);
-
-INSERT INTO template_oid (table_id,oid_id,template_id) VALUES (3,1,2);
-INSERT INTO template_oid (table_id,oid_id,template_id) VALUES (2,2,2);
-INSERT INTO template_oid (table_id,oid_id,template_id) VALUES (12,3,2);
-INSERT INTO template_oid (table_id,oid_id,template_id) VALUES (8,4,2);
-INSERT INTO template_oid (table_id,oid_id,template_id) VALUES (10,5,2);
-INSERT INTO template_oid (table_id,oid_id,template_id) VALUES (11,6,2);
-INSERT INTO template_oid (table_id,oid_id,template_id) VALUES (13,7,2);
-INSERT INTO template_oid (table_id,oid_id,template_id) VALUES (4,8,2);
-INSERT INTO template_oid (table_id,oid_id,template_id) VALUES (9,10,2);
-INSERT INTO template_oid (table_id,oid_id,template_id) VALUES (5,9,2);
+/* APPS */
 
 
 INSERT INTO apps (apps_id,apps_name,apps_query) VALUES
@@ -354,6 +291,77 @@ JOIN sys_name snt2 ON snt2.alias = ori.alias AND snt2.project_id = ori.project_i
 JOIN host host ON ori.alias = host.alias AND ori.project_id = host.project_id
 '
 );
+
+
+
+/* TEMPLATES */
+
+
+
+INSERT INTO template (template_id,template_name) VALUES (1,'CiscoNoRoute');
+INSERT INTO template (template_id,template_name) VALUES (2,'CiscoRoute');
+
+INSERT INTO oid (oid_id,oid_name,oid,type,cols,format) VALUES (1,'ifXTable','1.3.6.1.2.1.31.1.1','table','{1,18}','{}');
+INSERT INTO oid (oid_id,oid_name,oid,type,cols,format) VALUES (2,'ifTable','1.3.6.1.2.1.2.2','table','{1,2,4,5,7,8}','{}');
+INSERT INTO oid (oid_id,oid_name,oid,type,cols,format) VALUES (3,'ciscoCdpCacheTable','1.3.6.1.4.1.9.9.23.1.2.1','table','{1,3,4,5,6,7,8,9,10,11,12}','{"2":"formats.ipAddress"}');
+INSERT INTO oid (oid_id,oid_name,oid,type,cols,format) VALUES (4,'ospfNbrTable','1.3.6.1.2.1.14.10','table','{1,2,3,4,5,6,7,8,9,10,11}','{}');
+INSERT INTO oid (oid_id,oid_name,oid,type,format) VALUES (5,'sysDesc','1.3.6.1.2.1.1.1.0','single','{}');
+INSERT INTO oid (oid_id,oid_name,oid,type,format) VALUES (6,'sysName','1.3.6.1.2.1.1.5.0','single','{}');
+INSERT INTO oid (oid_id,oid_name,oid,type,cols,format) VALUES (7,'bgpPeerTable','1.3.6.1.2.1.15.3','table','{1,2,3}','{}');
+INSERT INTO oid (oid_id,oid_name,oid,type,cols,format) VALUES (8,'ipAddrTable','1.3.6.1.2.1.4.20','table','{1,2,3,4,5}','{}');
+INSERT INTO oid (oid_id,oid_name,oid,type,cols,format) VALUES (9,'ipRouteTable','1.3.6.1.2.1.4.21','table','{1,2,3,4,5,6,7,8,9,10,11,12}','{}');
+INSERT INTO oid (oid_id,oid_name,oid,type,format) VALUES (10,'ospfRouterId','1.3.6.1.2.1.14.1.1.0','single','{}');
+
+
+INSERT INTO tables_schema (table_id,table_name) VALUES (1,'at_table');
+INSERT INTO tables_schema (table_id,table_name) VALUES (2,'if_table');
+INSERT INTO tables_schema (table_id,table_name) VALUES (3,'if_x_table');
+INSERT INTO tables_schema (table_id,table_name) VALUES (4,'ip_addr_table');
+INSERT INTO tables_schema (table_id,table_name) VALUES (5,'ip_route_table');
+INSERT INTO tables_schema (table_id,table_name) VALUES (6,'ospf_if_table');
+INSERT INTO tables_schema (table_id,table_name) VALUES (8,'ospf_nbr_table');
+INSERT INTO tables_schema (table_id,table_name) VALUES (9,'ospf_router_id');
+INSERT INTO tables_schema (table_id,table_name) VALUES (10,'sys_descr');
+INSERT INTO tables_schema (table_id,table_name) VALUES (11,'sys_name');
+INSERT INTO tables_schema (table_id,table_name) VALUES (12,'cisco_cdp_cache_table');
+INSERT INTO tables_schema (table_id,table_name) VALUES (13,'bgp_peer_table');
+
+INSERT INTO template_oid (table_id,oid_id,template_id) VALUES (3,1,1);
+INSERT INTO template_oid (table_id,oid_id,template_id) VALUES (2,2,1);
+INSERT INTO template_oid (table_id,oid_id,template_id) VALUES (12,3,1);
+INSERT INTO template_oid (table_id,oid_id,template_id) VALUES (8,4,1);
+INSERT INTO template_oid (table_id,oid_id,template_id) VALUES (10,5,1);
+INSERT INTO template_oid (table_id,oid_id,template_id) VALUES (11,6,1);
+INSERT INTO template_oid (table_id,oid_id,template_id) VALUES (13,7,1);
+INSERT INTO template_oid (table_id,oid_id,template_id) VALUES (4,8,1);
+INSERT INTO template_oid (table_id,oid_id,template_id) VALUES (9,10,1);
+
+INSERT INTO template_oid (table_id,oid_id,template_id) VALUES (3,1,2);
+INSERT INTO template_oid (table_id,oid_id,template_id) VALUES (2,2,2);
+INSERT INTO template_oid (table_id,oid_id,template_id) VALUES (12,3,2);
+INSERT INTO template_oid (table_id,oid_id,template_id) VALUES (8,4,2);
+INSERT INTO template_oid (table_id,oid_id,template_id) VALUES (10,5,2);
+INSERT INTO template_oid (table_id,oid_id,template_id) VALUES (11,6,2);
+INSERT INTO template_oid (table_id,oid_id,template_id) VALUES (13,7,2);
+INSERT INTO template_oid (table_id,oid_id,template_id) VALUES (4,8,2);
+INSERT INTO template_oid (table_id,oid_id,template_id) VALUES (9,10,2);
+INSERT INTO template_oid (table_id,oid_id,template_id) VALUES (5,9,2);
+
+/* WORKBENCH */
+
+
+INSERT INTO project (project_id,project_name) VALUES (1,'Testbench');
+
+INSERT INTO host (alias,community,ip_address,port,location,template_id,project_id) VALUES ('R1','R1','consultron_snmpsim_1',1024,'testbench', 2,1);
+INSERT INTO host (alias,community,ip_address,port,location,template_id,project_id) VALUES ('R2','R2','consultron_snmpsim_1',1024,'testbench', 2,1);
+INSERT INTO host (alias,community,ip_address,port,location,template_id,project_id) VALUES ('R3','R3','consultron_snmpsim_1',1024,'testbench', 2,1);
+INSERT INTO host (alias,community,ip_address,port,location,template_id,project_id) VALUES ('R4','R4','consultron_snmpsim_1',1024,'testbench', 2,1);
+INSERT INTO host (alias,community,ip_address,port,location,template_id,project_id) VALUES ('R5','R5','consultron_snmpsim_1',1024,'testbench', 2,1);
+INSERT INTO host (alias,community,ip_address,port,location,template_id,project_id) VALUES ('tout','tout','consultron_snmpsim_1',1024,'testbench', 2,1);
+
+
+
+
 
 
 

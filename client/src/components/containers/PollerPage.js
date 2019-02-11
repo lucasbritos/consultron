@@ -19,7 +19,6 @@ import Typography from '@material-ui/core/Typography';
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
-import SnackbarContent from '@material-ui/core/SnackbarContent';
 
 const auxStyle = (busy,connected) => {
   const buttonRed = {margin:4,backgroundColor:red[500]}
@@ -34,7 +33,7 @@ const auxLabel = (busy,connected) => {
   if (!connected) return "start";
   return busy? "cancel":"start"
 }
-
+/*
 const styles = {
   root: {
     flexGrow: 1,
@@ -43,6 +42,7 @@ const styles = {
     width: 150
   }
 };
+*/
 export class PollerPage extends React.Component {
   constructor(props,context) {
     super(props,context);
@@ -130,7 +130,7 @@ export class PollerPage extends React.Component {
               label="Clean DB"
             />
             <FormControlLabel
-              control={ <Checkbox disabled= {this.props.poller.busy} id="cache" disabled checked={this.state.cache} onChange={this.toggleOption} value="checkedB" color="primary" /> }
+              control={ <Checkbox disabled= {this.props.poller.busy} id="cache" checked={this.state.cache} onChange={this.toggleOption} value="checkedB" color="primary" /> }
               label="Cache"
             />
           </Grid>

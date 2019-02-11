@@ -8,7 +8,6 @@ import initialState from './initialState';
 // Note that I'm using Object.assign to create a copy of current state
 // and update values on the copy.
 export default function projectReducer(state = initialState.projects, action) {
-  console.log(action)
   switch (action.type) {
     case LOAD_PROJECTS_SUCCESS:
       // For this example, just simulating a save by changing date modified.

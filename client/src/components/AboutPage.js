@@ -7,10 +7,15 @@ const AboutPage = () => {
   return (
     <div>
       <h2 className="alt-header">About</h2>
-      <p>
-        This example app is part of the <a href="https://github.com/coryhouse/react-slingshot">React-Slingshot
-        starter kit</a>.
-      </p>
+      <p> Author: Lucas Britos </p>
+      <p> This project use: </p>
+        <ul>
+          <li>Node.js</li>
+          <li>Postgres</li>
+          <li>React.js / Redux</li>
+          <li><a href="https://github.com/coryhouse/react-slingshot">React-Slingshot starter kit</a></li>
+        </ul>
+
       <p>
         <Link to="/badlink">Click this bad link</Link> to see the 404 page.
       </p>
