@@ -1,7 +1,12 @@
+const utf8 = require('utf8');
+
 const formats = {
     ipAddress: (input) => {return input[0]+"."+input[1]+"."+ input[2]+"."+ input[3];},
     macAddress: (input) => { return input.toString('hex'); },
-    test: (input) => { return "test"; }
+    test: (input) => { return "test"; },
+    defaultInt: (input)=> (input || 0),
+    defaultStr: (input)=> (input || ""),
+    encodeUtf8: (input)=> utf8.encode(input)
   }
 
 var removeCrLr = function (string){ return string.replace(/\r?\n|\r/g," ").replace(/,/g,";"); }

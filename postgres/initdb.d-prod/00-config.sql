@@ -300,6 +300,7 @@ JOIN host host ON ori.alias = host.alias AND ori.project_id = host.project_id
 
 INSERT INTO template (template_id,template_name) VALUES (1,'CiscoNoRoute');
 INSERT INTO template (template_id,template_name) VALUES (2,'CiscoRoute');
+INSERT INTO template (template_id,template_name) VALUES (3,'CiscoNoRoute-Quilmes');
 
 INSERT INTO oid (oid_id,oid_name,oid,type,cols,format) VALUES (1,'ifXTable','1.3.6.1.2.1.31.1.1','table','{1,18}','{}');
 INSERT INTO oid (oid_id,oid_name,oid,type,cols,format) VALUES (2,'ifTable','1.3.6.1.2.1.2.2','table','{1,2,4,5,7,8}','{}');
@@ -311,6 +312,7 @@ INSERT INTO oid (oid_id,oid_name,oid,type,cols,format) VALUES (7,'bgpPeerTable',
 INSERT INTO oid (oid_id,oid_name,oid,type,cols,format) VALUES (8,'ipAddrTable','1.3.6.1.2.1.4.20','table','{1,2,3,4,5}','{}');
 INSERT INTO oid (oid_id,oid_name,oid,type,cols,format) VALUES (9,'ipRouteTable','1.3.6.1.2.1.4.21','table','{1,2,3,4,5,6,7,8,9,10,11,12}','{}');
 INSERT INTO oid (oid_id,oid_name,oid,type,format) VALUES (10,'ospfRouterId','1.3.6.1.2.1.14.1.1.0','single','{}');
+INSERT INTO oid (oid_id,oid_name,oid,type,cols,format) VALUES (11,'ciscoCdpCacheTable-Quilmes','1.3.6.1.4.1.9.9.23.1.2.1','table','{1,3,4,5,6,7,8,9,10,11,12}','{"2": "formats.ipAddress","0": "formats.defaultInt","8": "formats.defaultStr", "7": "formats.test"}';
 
 
 INSERT INTO tables_schema (table_id,table_name) VALUES (1,'at_table');
@@ -346,6 +348,17 @@ INSERT INTO template_oid (table_id,oid_id,template_id) VALUES (13,7,2);
 INSERT INTO template_oid (table_id,oid_id,template_id) VALUES (4,8,2);
 INSERT INTO template_oid (table_id,oid_id,template_id) VALUES (9,10,2);
 INSERT INTO template_oid (table_id,oid_id,template_id) VALUES (5,9,2);
+
+INSERT INTO template_oid (table_id,oid_id,template_id) VALUES (3,1,3);
+INSERT INTO template_oid (table_id,oid_id,template_id) VALUES (2,2,3);
+INSERT INTO template_oid (table_id,oid_id,template_id) VALUES (12,11,3);
+INSERT INTO template_oid (table_id,oid_id,template_id) VALUES (8,4,3);
+INSERT INTO template_oid (table_id,oid_id,template_id) VALUES (10,5,3);
+INSERT INTO template_oid (table_id,oid_id,template_id) VALUES (11,6,3);
+INSERT INTO template_oid (table_id,oid_id,template_id) VALUES (13,7,3);
+INSERT INTO template_oid (table_id,oid_id,template_id) VALUES (4,8,3);
+INSERT INTO template_oid (table_id,oid_id,template_id) VALUES (9,10,3);
+
 
 /* WORKBENCH */
 

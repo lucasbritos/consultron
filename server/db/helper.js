@@ -27,6 +27,8 @@ let insertTable = async (table,project,data) => {
     param = ""
     for (i in row) { param += '$'+(parseInt(i)+1)+','}
     param = param.slice(0, -1); // saco la ultima coma
+    //console.log(row);
+    //console.log('INSERT INTO '+ table +' VALUES('+param+')')
     await db.query('INSERT INTO '+ table +' VALUES('+param+')',row)
   }
 
